@@ -1,0 +1,55 @@
+mat-toolbar {
+    background: darkgoldenrod   ;  //deepskyblue DarkSlateBlue;
+    color: white;
+    padding: 10px;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+ 
+  }
+  
+  .sidenav-content {
+    display: flex;
+    height: 100%;
+    align-items: top;
+    justify-content: center;
+  }
+  
+  .sidenav {
+    padding: 20px;
+    margin: 0px;
+    width: 200px;
+    border-right: none;
+    background:darkgoldenrod;
+    color: white;
+    border-radius: 0px;
+    padding: 16px;
+    text-align: left;
+  }
+
+  .spacer {
+    flex: 1 1 auto;
+  }
+
+  mat-divider {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: rgba(255, 255, 255, 0.377);
+}
+
+    h2{
+        text-align: center;
+    }
+
+    .header{
+        text-align: center;
+    }
+
+    img{
+     width: 200px;
+    }
+    .civilimg{
+        width: 100%;
+    }

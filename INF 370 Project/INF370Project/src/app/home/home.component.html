@@ -1,0 +1,103 @@
+
+<mat-toolbar >
+    <button mat-icon-button (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="header">GabriQ Pty Ltd</span>
+    <span class="spacer"></span>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <button mat-icon-button class="example-icon" >
+      <mat-icon>share</mat-icon>
+    </button>
+  </mat-toolbar>
+
+<mat-drawer-container class="container" autosize>
+  <mat-drawer #drawer class="sidenav" mode="side">
+    <h2>Menu</h2>
+    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+    <button (click)="showFiller = !showFiller" mat-raised-button>
+      Toggle extra text
+    </button>
+
+
+    <button mat-button class="menu-button">
+            <mat-icon>home</mat-icon>
+            <span>Home</span>
+        </button>
+         <mat-divider></mat-divider>
+        <button mat-button class="menu-button">
+            <mat-icon> gite</mat-icon>
+            <span> Project</span>
+        </button> <mat-divider></mat-divider>
+         <button mat-button class="menu-button">
+            <mat-icon>assignment</mat-icon>
+            <span>Phase</span>
+        </button>  <mat-divider></mat-divider>
+         <button mat-button class="menu-button">
+            <mat-icon>task</mat-icon>
+            <span>Task</span>
+        </button> <mat-divider></mat-divider>
+        <button mat-button class="menu-button">
+            <mat-icon>person</mat-icon>
+            <span>User</span>
+        </button> <mat-divider></mat-divider>
+         <button mat-button class="menu-button">
+            <mat-icon>badge</mat-icon>
+            <span>Employee</span>
+        </button> <mat-divider></mat-divider>
+         <button mat-button class="menu-button">
+            <mat-icon>description</mat-icon>
+            <span>Tender</span>
+        </button> <mat-divider></mat-divider>
+         <button mat-button class="menu-button">
+            <mat-icon>shopping_cart</mat-icon>
+            <span>Supplier</span>
+        </button> <mat-divider></mat-divider>
+         <button mat-button class="menu-button">
+            <mat-icon>request_quote</mat-icon>
+            <span>Order</span>
+        </button> <mat-divider></mat-divider>
+         <button mat-button class="menu-button">
+            <mat-icon>inventory</mat-icon>
+            <span>Inventory</span>
+        </button> <mat-divider></mat-divider>
+         <button mat-button class="menu-button">
+            <mat-icon>category</mat-icon>
+            <span>Category</span>
+        </button> <mat-divider></mat-divider>
+         <button mat-button class="menu-button">
+            <mat-icon>engineering</mat-icon>
+            <span>Subcontractor</span>
+        </button> <mat-divider></mat-divider>
+         <button mat-button class="menu-button">
+            <mat-icon>hardware</mat-icon>
+            <span>Equipment</span>
+              </button> <mat-divider></mat-divider>
+         <button mat-button class="menu-button">
+            <mat-icon>stacked_line_chart</mat-icon>
+            <span>Reports</span> 
+        </button> <mat-divider></mat-divider>
+        <button mat-button class="menu-button">
+            <mat-icon>help</mat-icon>
+            <span>Help</span>
+        </button>
+
+
+  </mat-drawer>
+
+  <div class="sidenav-content">
+    <mat-card class="logo-card">
+      <img mat-card-image src="assets/img/gabriqlogo.jpg">
+    </mat-card>
+
+    <mat-card >
+      <img mat-card-image class="civilimg"  src="assets/img/civilpic.jpg">
+    </mat-card>
+     
+  </div>
+
+ 
+
+</mat-drawer-container>
