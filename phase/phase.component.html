@@ -1,0 +1,87 @@
+<div class="container">
+
+    <mat-card>
+        <mat-toolbar color="accent">
+            <div align="center" style="color:white;text-align: right;">
+                Phase
+            </div>
+        </mat-toolbar>
+        <br><br>
+        <mat-card-content>
+            <form [formGroup]="PhaseForm" (ngSubmit)="onFormSubmit()">
+                <table>
+                    <tr>
+                        <td class="tbl1">
+                            <mat-form-field class="demo-full-width">
+                                <input formControlName="PhaseName" matTooltip="Enter Phase Name" matInput
+                                    placeholder="Phase Name">
+                            </mat-form-field>
+                            <mat-error>
+                                <span
+                                    *ngIf="!PhaseForm.get('PhaseName').value && PhaseForm.get('PhaseName').touched"></span>
+                            </mat-error>
+                        </td>
+                        <td class="tbl1">
+                            <mat-form-field class="demo-full-width">
+                                <input formControlName="PhaseDescription" matTooltip="Enter Description" matInput
+                                    placeholder="Phase Description">
+                            </mat-form-field>
+                            <mat-error>
+                                <span
+                                    *ngIf="!PhaseForm.get('PhaseDescription').value && PhaseForm.get('PhaseDescription').touched"></span>
+                            </mat-error>
+                        </td>
+                        <td class="tbl1">
+                            <mat-form-field class="demo-full-width">
+                                <input matInput [matDatepicker]="picker" matTooltip="Enter Start Date"
+                                    formControlName="StartDate" placeholder="Choose Start Date">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                            <mat-error>
+                                <span
+                                    *ngIf="!PhaseForm.get('StartDate').value && PhaseForm.get('StartDate').touched"></span>
+                            </mat-error>
+                        </td>
+                        <td class="tbl1">
+                            <mat-form-field class="demo-full-width">
+                                <input matInput [matDatepicker]="picker" matTooltip="Enter End Date"
+                                    formControlName="EndDate" placeholder="Choose End Date">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                            <mat-error>
+                                <span
+                                    *ngIf="!PhaseForm.get('EndDate').value && PhaseForm.get('EndDate').touched"></span>
+                            </mat-error>
+                        </td>
+                </table>
+                <br><br>
+                <table class="table">
+                    <tr ngclass="btn-primary">
+                        <th class="tbl2">Phase ID</th>
+                        <th class="tbl2">Phase Name</th>
+                        <th class="tbl2">Phase Description</th>
+                        <th class="tbl2">Start Date</th>
+                        <th class="tbl2">End Date</th>
+                    </tr>
+                    <tr *ngFor="let phase of allPhases | async">
+                        <td class="tbl2">{{phase.PhaseName}}</td>
+                        <td class="tbl2">{{phase.PhaseDescription}}</td>
+                        <td class="tbl2">{{phase.StartDate | date}}</td>
+                        <td class="tbl2">{{phase.EndDate | date}}</td>
+                        <td class="tbl2">
+                            <button type="button" class="btn btn-info" matTooltip="Click Update Button"
+                                (click)="loadPhaseToUpdate(phase.PhaseID)">Update</button>
+                        </td>
+                        <td class="tbl2">
+                            <button type="button" class="btn btn-danger" matTooltip="Click Delete Button"
+                                (click)="deletePhase(phase.PhaseID)">Delete</button>
+                        </td>
+                    </tr>
+
+                </table>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

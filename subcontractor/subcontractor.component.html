@@ -1,0 +1,88 @@
+<div class="container">
+
+    <mat-card>
+        <mat-toolbar color="accent">
+            <div align="center" style="color:white;text-align: right;">
+                Subcontractor
+            </div>
+        </mat-toolbar>
+        <br><br>
+        <mat-card-content>
+            <form [formGroup]="SubcontractorForm" (ngSubmit)="onFormSubmit()">
+                <table>
+                    <tr>
+                        <td class="tbl1">
+                            <mat-form-field class="demo-full-width">
+                                <input formControlName="SubcontractorName" matTooltip="Enter Subcontractor Name" matInput
+                                    placeholder="Subcontractor Name">
+                            </mat-form-field>
+                            <mat-error>
+                                <span
+                                    *ngIf="!SubcontractorForm.get('SubcontractorName').value && SubcontractorForm.get('SubcontractorName').touched"></span>
+                            </mat-error>
+                        </td>
+                        <td class="tbl1">
+                            <mat-form-field class="demo-full-width">
+                                <input formControlName="SubcontractorAddress" matTooltip="Enter Address" matInput
+                                    placeholder="Subcontractor Address">
+                            </mat-form-field>
+                            <mat-error>
+                                <span
+                                    *ngIf="!SubcontractorForm.get('SubcontractorAddress').value && SubcontractorForm.get('SubcontractorAddress').touched"></span>
+                            </mat-error>
+                        </td>
+                        <td class="tbl1">
+                            <mat-form-field class="demo-full-width">
+                                <input formControlName="JobDescription" matTooltip="Enter Job Description" matInput
+                                    placeholder="Job Description">
+                            </mat-form-field>
+                            <mat-error>
+                                <span
+                                    *ngIf="!SubcontractorForm.get('JobDescription').value && SubcontractorForm.get('JobDescription').touched"></span>
+                            </mat-error>
+                        </td>
+                        <td class="tbl1">
+                            <mat-form-field class="demo-full-width">
+                                <input formControlName="TelephoneNumber" matTooltip="Enter Telephone Number" matInput
+                                    placeholder="Telephone Number">
+                            </mat-form-field>
+                            <mat-error>
+                                <span
+                                    *ngIf="!SubcontractorForm.get('TelephoneNumber').value && SubcontractorForm.get('TelephoneNumber').touched"></span>
+                            </mat-error>
+                        </td>
+                        
+                        
+                </table>
+                <br><br>
+                <table class="table">
+                    <tr ngclass="btn-primary">
+                        <th class="tbl2">Subcontractor ID</th>
+                        <th class="tbl2">Subcontractor Name</th>
+                        <th class="tbl2">Subcontractor Address</th>
+                        <th class="tbl2">Job Description</th>
+                        <th class="tbl2">Telephone Number</th>
+                        <th class="tbl2">Email Address</th>
+                    </tr>
+                    <tr *ngFor="let phase of allSubcontractors | async">
+                        <td class="tbl2">{{subcontractor.SubcontractorID}}</td>
+                        <td class="tbl2">{{subcontractor.SubcontractorName}}</td>
+                        <td class="tbl2">{{subcontractor.SubcontractorAddress}}</td>
+                        <td class="tbl2">{{subcontractor.JobDescription}}</td>
+                        <td class="tbl2">{{subcontractor.TelephoneNumber}}</td>
+                        <td class="tbl2">{{subcontractor.EmailAddress}}</td>
+                        <td class="tbl2">
+                            <button type="button" class="btn btn-info" matTooltip="Click Update Button"
+                                (click)="loadSubcontractorToUpdate(subcontractor.SubcontractorID)">Update</button>
+                        </td>
+                        <td class="tbl2">
+                            <button type="button" class="btn btn-danger" matTooltip="Click Delete Button"
+                                (click)="deleteSubcontractor(subcontractor.SubcontractorID)">Delete</button>
+                        </td>
+                    </tr>
+
+                </table>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>
