@@ -1,0 +1,62 @@
+<h1>Update Supplier</h1>
+
+<form [formGroup]="form" (submit)="submit()">
+    <div class="mat-row">
+        
+        <div class="mat-col-quarter">
+            <mat-form-field appearance="outline" class="control-w">
+                <mat-label>Supplier Name</mat-label>
+                <input type="text" matInput placeholder="Supplier Name" formControlName="supplierName">
+                <mat-hint>The supplier's name</mat-hint>
+            </mat-form-field>
+        </div>
+
+         <div class="mat-col-quarter">
+            <mat-form-field appearance="outline" class="control-m">
+                <mat-label>Email Address</mat-label>
+                <input type="text" matInput placeholder="email" formControlName="email">
+                <mat-hint>Supplier email address</mat-hint>
+            </mat-form-field>
+        </div>
+    </div>
+
+    
+    <div class="mat-row">
+       <div class="mat-col-quarter">
+            <mat-form-field appearance="outline" class="control-w">
+                <mat-label>Telephone Number</mat-label>
+                <input type="text" matInput placeholder="Telephone Number" formControlName="telNumber">
+                <mat-hint>Telephone number</mat-hint>
+            </mat-form-field>
+        </div>
+
+        <div class="mat-col-quarter">
+            <mat-form-field appearance="outline" class="control-w">
+                <mat-label>Physical Address</mat-label>
+                <input type="text" matInput placeholder="Address" formControlName="Address">
+                <mat-hint>Supplier physical address</mat-hint>
+            </mat-form-field>
+        </div>
+
+       <div class="mat-col-quarter">
+            <mat-form-field appearance="outline" class="control-w">
+                <mat-label>Supplier type</mat-label>
+                <mat-select formControlName="title">
+                  <mat-option value="Retail">Retail</mat-option>
+                  <mat-option value="Rental">Rental</mat-option>
+                   <mat-option value="Other">Other</mat-option>
+                </mat-select>
+                <mat-hint align="end">Supplier type</mat-hint>
+              </mat-form-field>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <button mat-raised-button color ="primary" >
+            <span class="spinner-border spinner-border-sm mr-1"></span>
+            Update details
+        </button>
+        <a (click)="onNoClick()" mat-button>Cancel</a>
+    </div>
+</form>
+

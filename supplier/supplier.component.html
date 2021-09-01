@@ -1,0 +1,46 @@
+<h1>Supplier</h1>
+
+<a href="#" routerlink="add-edit-supplier" class="btn btn-primary">Add Supplier</a>
+
+<div class="mat-elevation-z8 table">
+    <table mat-table  matSort>
+        <!-- Supplier name Column -->
+        <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Supplier name </th>
+        <td mat-cell *matCellDef="let element">  </td>
+        </ng-container>
+
+        <!-- Number Column -->
+        <ng-container matColumnDef="Telnumber">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Telephone number </th>
+            <td mat-cell *matCellDef="let element">  </td>
+        </ng-container>
+
+
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>
+                <button mat-icon-button color="primary" aria-label="Example icon button with a home icon"
+                routerLink = "add"
+                >
+                    <mat-icon>Actions</mat-icon>
+                  </button>
+            </th>
+            <td mat-cell *matCellDef="let element"> 
+                <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu" xPosition="before">
+                <button mat-menu-item [routerLink]="['/supplier/','edit']" >Update Supplier</button>
+                <button mat-menu-item (click)="deleteSupplier(element)">Delete Supplier</button>
+                <button mat-menu-item [routerLink]="['/supplier/','view']">View Supplier</button>
+                <button mat-menu-item [routerLink]="['/supplier/','supplierquotation']">Supplier Quotations</button>
+                </mat-menu>
+            </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
+

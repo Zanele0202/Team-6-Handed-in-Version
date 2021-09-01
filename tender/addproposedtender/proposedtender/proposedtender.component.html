@@ -1,0 +1,42 @@
+<div class="container">
+<h1>Proposed tender</h1>
+<a href="#" routerLink="tender" class="btn btn-primary">Back</a>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+<div class="form-group">
+
+  <mat-form-field class="full-width" appearance="fill">
+    <mat-label>Client Name</mat-label>
+    <input matInput placeholder="Client Name">
+  </mat-form-field>
+
+<mat-form-field class="full-width" appearance="fill">
+    <mat-label>Tender Description</mat-label>
+    <input matInput placeholder="tenderDescription">
+  </mat-form-field>
+
+<mat-form-field appearance="fill">
+  <mat-label>Date Submitted</mat-label>
+  <input matInput [matDatepicker]="picker">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+
+<mat-form-field appearance="fill">
+  <mat-label>Tender Status</mat-label>
+  <mat-select >
+    <mat-option value="submitted">Submitted</mat-option>
+    <mat-option value="accepted">Accepted</mat-option>
+  </mat-select>
+</mat-form-field>
+
+
+</div>
+
+<button class="btn btn-primary" type="submit">Add</button>
+<a href="#" routerLink="tender" class="btn btn-danger">Cancel</a>
+
+</form>
+
+</div>
+
