@@ -1,0 +1,14 @@
+.example-label {
+    display: table-cell;
+    font-size: 14px;
+    margin-left: 8px;
+    min-width: 120px;
+}
+
+.input-group-text {
+    width: 110px;
+}
+
+.blue {
+    color: #44d8e8;
+}

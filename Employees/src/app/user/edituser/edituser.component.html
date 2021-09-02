@@ -1,0 +1,65 @@
+<form [formGroup]="editform" (ngSubmit)="onFormSubmit(editform.value)"> 
+
+<div class="container">
+    <h3>Update Employee</h3>
+
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="firstname" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="lastname" />
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>ID Number</mat-label>
+        <input matInput formControlName="idno" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+          <mat-label>Home Address</mat-label>
+          <input matInput formControlName="homeaddress" />
+      </mat-form-field>
+    </p>
+
+  <p> 
+    <mat-form-field appearance="outline">
+        <mat-label>Email Address</mat-label>
+        <input matInput formControlName="email" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Telephone Number</mat-label>
+        <input matInput formControlName="telno" />
+      </mat-form-field>
+  </p>
+
+  <p> 
+    <mat-form-field appearance="outline">
+      <mat-label>Cellphone Number</mat-label>
+      <input matInput formControlName="cellno" />
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline">
+        <mat-label>Employee Type</mat-label>
+        <mat-select formControlName="emptype">
+          <mat-option>None</mat-option>
+          <mat-option value="Permanent">Permanent</mat-option>
+          <mat-option value="Leased">Leased</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </p>
+     
+    <p style="margin-left: 52%;">
+       <button type="submit" mat-flat-button color="primary">Update</button>
+
+        <button (click)="cancel()" mat-flat-button>Cancel</button>
+
+    </p>
+  </div>
+  </form>

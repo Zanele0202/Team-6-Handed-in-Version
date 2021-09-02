@@ -1,0 +1,13 @@
+<div class="login">
+    <div class="login-triangle"></div>
+    
+    <h2 class="login-header">Register</h2>
+  
+    <form class="login-container" [formGroup]="form">
+    <p><input type="text" placeholder="Name" formControlName="Name"></p>
+      <p><input type="email" placeholder="Email" formControlName="EmailAddress"></p>
+      <p><input type="password" placeholder="Password" formControlName="Password"></p>
+      <p><input type="submit" value="Register" (click)="register(form.value)"></p>
+      <p><a (click)="login()">Already have an account. Sign in.</a></p>
+    </form>
+  </div>
