@@ -1,0 +1,443 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Gabriq_System_DatabaseModelStoreContainer" CdmEntityContainer="Gabriq_System_DatabaseEntities">
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
+          <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
+          <ScalarProperty Name="Category_Description" ColumnName="Category_Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Checkout_Checkin">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.Checkout_Checkin">
+        <MappingFragment StoreEntitySet="Checkout/Checkin">
+          <ScalarProperty Name="Checkout_ID" ColumnName="Checkout_ID" />
+          <ScalarProperty Name="Checkout_Equip" ColumnName="Checkout_Equip" />
+          <ScalarProperty Name="Checkin_Equip" ColumnName="Checkin_Equip" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Checkout_Checkin_Date">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.Checkout_Checkin_Date">
+        <MappingFragment StoreEntitySet="Checkout/Checkin_Date">
+          <ScalarProperty Name="Checkout_Date_ID" ColumnName="Checkout_Date_ID" />
+          <ScalarProperty Name="Tasks_Equipment_ID" ColumnName="Tasks_Equipment_ID" />
+          <ScalarProperty Name="Checkout_Date" ColumnName="Checkout_Date" />
+          <ScalarProperty Name="Checkin_Date" ColumnName="Checkin_Date" />
+          <ScalarProperty Name="Checkout_ID" ColumnName="Checkout_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clients">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.Client">
+        <MappingFragment StoreEntitySet="Client">
+          <ScalarProperty Name="Client_ID" ColumnName="Client_ID" />
+          <ScalarProperty Name="Client_Name" ColumnName="Client_Name" />
+          <ScalarProperty Name="Client_Address" ColumnName="Client_Address" />
+          <ScalarProperty Name="Contact_Person" ColumnName="Contact_Person" />
+          <ScalarProperty Name="Telephone_Numbers" ColumnName="Telephone_Numbers" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
+          <ScalarProperty Name="Employee_Type_ID" ColumnName="Employee_Type_ID" />
+          <ScalarProperty Name="Employee_Name" ColumnName="Employee_Name" />
+          <ScalarProperty Name="Employee_Surname" ColumnName="Employee_Surname" />
+          <ScalarProperty Name="Employee_ID_Number" ColumnName="Employee_ID_Number" />
+          <ScalarProperty Name="Employee_Telephone_Number" ColumnName="Employee_Telephone_Number" />
+          <ScalarProperty Name="Employee_Address" ColumnName="Employee_Address" />
+          <ScalarProperty Name="Employee_Email_Address" ColumnName="Employee_Email_Address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employee_Task">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.Employee_Task">
+        <MappingFragment StoreEntitySet="Employee_Task">
+          <ScalarProperty Name="Employee_Task_ID" ColumnName="Employee_Task_ID" />
+          <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
+          <ScalarProperty Name="Task_ID" ColumnName="Task_ID" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employee_Type">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.Employee_Type">
+        <MappingFragment StoreEntitySet="Employee_Type">
+          <ScalarProperty Name="Employee_Type_ID" ColumnName="Employee_Type_ID" />
+          <ScalarProperty Name="Employee_Type_Description" ColumnName="Employee_Type_Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Equipments">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.Equipment">
+        <MappingFragment StoreEntitySet="Equipment">
+          <ScalarProperty Name="Equipment_ID" ColumnName="Equipment_ID" />
+          <ScalarProperty Name="Equipment_Name" ColumnName="Equipment_Name" />
+          <ScalarProperty Name="Equipment_Description" ColumnName="Equipment_Description" />
+          <ScalarProperty Name="Equipment_Condition" ColumnName="Equipment_Condition" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Inventories">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.Inventory">
+        <MappingFragment StoreEntitySet="Inventory">
+          <ScalarProperty Name="Inventory_ID" ColumnName="Inventory_ID" />
+          <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
+          <ScalarProperty Name="Inventory_Name" ColumnName="Inventory_Name" />
+          <ScalarProperty Name="Inventory_Description" ColumnName="Inventory_Description" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Inventory_On_Hand">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.Inventory_On_Hand">
+        <MappingFragment StoreEntitySet="Inventory_On_Hand">
+          <ScalarProperty Name="Inventory_On_Hand_ID" ColumnName="Inventory_On_Hand_ID" />
+          <ScalarProperty Name="Inventory_ID" ColumnName="Inventory_ID" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="WriteoffInventory_ID" ColumnName="WriteoffInventory_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Order_Status">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.Order_Status">
+        <MappingFragment StoreEntitySet="Order_Status">
+          <ScalarProperty Name="Order_Status_ID" ColumnName="Order_Status_ID" />
+          <ScalarProperty Name="Status_Type" ColumnName="Status_Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orderlines">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.Orderline">
+        <MappingFragment StoreEntitySet="Orderline">
+          <ScalarProperty Name="Orderline_ID" ColumnName="Orderline_ID" />
+          <ScalarProperty Name="Inventory_ID" ColumnName="Inventory_ID" />
+          <ScalarProperty Name="Inventory_Item" ColumnName="Inventory_Item" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Unit_Price" ColumnName="Unit_Price" />
+          <ScalarProperty Name="Total_Cost" ColumnName="Total_Cost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Password_History">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.Password_History">
+        <MappingFragment StoreEntitySet="Password_History">
+          <ScalarProperty Name="Password_ID" ColumnName="Password_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Payment_Type">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.Payment_Type">
+        <MappingFragment StoreEntitySet="Payment_Type">
+          <ScalarProperty Name="Payment_Type_ID" ColumnName="Payment_Type_ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Phases">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.Phase">
+        <MappingFragment StoreEntitySet="Phase">
+          <ScalarProperty Name="Phase_ID" ColumnName="Phase_ID" />
+          <ScalarProperty Name="Phase_Status_ID" ColumnName="Phase_Status_ID" />
+          <ScalarProperty Name="Project_ID" ColumnName="Project_ID" />
+          <ScalarProperty Name="Phase_Name" ColumnName="Phase_Name" />
+          <ScalarProperty Name="Phase_Description" ColumnName="Phase_Description" />
+          <ScalarProperty Name="Start_Date" ColumnName="Start_Date" />
+          <ScalarProperty Name="End_Date" ColumnName="End_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Phase_Inventory">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.Phase_Inventory">
+        <MappingFragment StoreEntitySet="Phase_Inventory">
+          <ScalarProperty Name="Phase_Inventory_ID" ColumnName="Phase_Inventory_ID" />
+          <ScalarProperty Name="Phase_ID" ColumnName="Phase_ID" />
+          <ScalarProperty Name="Inventory_ID" ColumnName="Inventory_ID" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Phase_Status">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.Phase_Status">
+        <MappingFragment StoreEntitySet="Phase_Status">
+          <ScalarProperty Name="Phase_Status_ID" ColumnName="Phase_Status_ID" />
+          <ScalarProperty Name="Status_Type" ColumnName="Status_Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Projects">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.Project">
+        <MappingFragment StoreEntitySet="Project">
+          <ScalarProperty Name="Project_ID" ColumnName="Project_ID" />
+          <ScalarProperty Name="Project_Status_ID" ColumnName="Project_Status_ID" />
+          <ScalarProperty Name="Project_Name" ColumnName="Project_Name" />
+          <ScalarProperty Name="Project_Description" ColumnName="Project_Description" />
+          <ScalarProperty Name="Start_Date" ColumnName="Start_Date" />
+          <ScalarProperty Name="End_Date" ColumnName="End_Date" />
+          <ScalarProperty Name="Site_Name" ColumnName="Site_Name" />
+          <ScalarProperty Name="Site_Address" ColumnName="Site_Address" />
+          <ScalarProperty Name="Tender_ID" ColumnName="Tender_ID" />
+          <ScalarProperty Name="Phase_ID" ColumnName="Phase_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Project_Status">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.Project_Status">
+        <MappingFragment StoreEntitySet="Project_Status">
+          <ScalarProperty Name="Project_Status_ID" ColumnName="Project_Status_ID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rentals">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.Rental">
+        <MappingFragment StoreEntitySet="Rental">
+          <ScalarProperty Name="Rental_ID" ColumnName="Rental_ID" />
+          <ScalarProperty Name="Rental_Status_ID" ColumnName="Rental_Status_ID" />
+          <ScalarProperty Name="Supplier_ID" ColumnName="Supplier_ID" />
+          <ScalarProperty Name="Rental_Name" ColumnName="Rental_Name" />
+          <ScalarProperty Name="Rental_Cost" ColumnName="Rental_Cost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rental_Line">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.Rental_Line">
+        <MappingFragment StoreEntitySet="Rental_Line">
+          <ScalarProperty Name="Rental_Line_ID" ColumnName="Rental_Line_ID" />
+          <ScalarProperty Name="Inventory_ID" ColumnName="Inventory_ID" />
+          <ScalarProperty Name="Rental_Name" ColumnName="Rental_Name" />
+          <ScalarProperty Name="Start_Date" ColumnName="Start_Date" />
+          <ScalarProperty Name="End_Date" ColumnName="End_Date" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rental_Request">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.Rental_Request">
+        <MappingFragment StoreEntitySet="Rental_Request">
+          <ScalarProperty Name="Rental_Request_ID" ColumnName="Rental_Request_ID" />
+          <ScalarProperty Name="Supplier_ID" ColumnName="Supplier_ID" />
+          <ScalarProperty Name="Rental_Item" ColumnName="Rental_Item" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Request_Date" ColumnName="Request_Date" />
+          <ScalarProperty Name="Rental_Request_Status_ID" ColumnName="Rental_Request_Status_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rental_Request_Status">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.Rental_Request_Status">
+        <MappingFragment StoreEntitySet="Rental_Request_Status">
+          <ScalarProperty Name="Rental_Request_Status_ID" ColumnName="Rental_Request_Status_ID" />
+          <ScalarProperty Name="Status_Type" ColumnName="Status_Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rental_Status">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.Rental_Status">
+        <MappingFragment StoreEntitySet="Rental_Status">
+          <ScalarProperty Name="Rental_Status_ID" ColumnName="Rental_Status_ID" />
+          <ScalarProperty Name="Status_Type" ColumnName="Status_Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subcontractors">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.Subcontractor">
+        <MappingFragment StoreEntitySet="Subcontractor">
+          <ScalarProperty Name="Subcontractor_ID" ColumnName="Subcontractor_ID" />
+          <ScalarProperty Name="Sub_Name" ColumnName="Sub_Name" />
+          <ScalarProperty Name="Sub_Address" ColumnName="Sub_Address" />
+          <ScalarProperty Name="Sub_Job_Description" ColumnName="Sub_Job_Description" />
+          <ScalarProperty Name="Telephone_Number" ColumnName="Telephone_Number" />
+          <ScalarProperty Name="Email_Address" ColumnName="Email_Address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subcontractor_Phase">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.Subcontractor_Phase">
+        <MappingFragment StoreEntitySet="Subcontractor_Phase">
+          <ScalarProperty Name="Subcontractor_Phase_ID" ColumnName="Subcontractor_Phase_ID" />
+          <ScalarProperty Name="Subcontractor_ID" ColumnName="Subcontractor_ID" />
+          <ScalarProperty Name="Phase_ID" ColumnName="Phase_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Suppliers">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.Supplier">
+        <MappingFragment StoreEntitySet="Supplier">
+          <ScalarProperty Name="Supplier_ID" ColumnName="Supplier_ID" />
+          <ScalarProperty Name="Supplier_Type_ID" ColumnName="Supplier_Type_ID" />
+          <ScalarProperty Name="Supplier_Request_ID" ColumnName="Supplier_Request_ID" />
+          <ScalarProperty Name="Supplier_Name" ColumnName="Supplier_Name" />
+          <ScalarProperty Name="Supplier_Address" ColumnName="Supplier_Address" />
+          <ScalarProperty Name="Supplier_Email" ColumnName="Supplier_Email" />
+          <ScalarProperty Name="Supplier_Telephone_Number" ColumnName="Supplier_Telephone_Number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Supplier_Order">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.Supplier_Order">
+        <MappingFragment StoreEntitySet="Supplier_Order">
+          <ScalarProperty Name="Supplier_Order_ID" ColumnName="Supplier_Order_ID" />
+          <ScalarProperty Name="Project_ID" ColumnName="Project_ID" />
+          <ScalarProperty Name="Order_Status_ID" ColumnName="Order_Status_ID" />
+          <ScalarProperty Name="Payment_Type_ID" ColumnName="Payment_Type_ID" />
+          <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Order_Items" ColumnName="Order_Items" />
+          <ScalarProperty Name="Total_Cost" ColumnName="Total_Cost" />
+          <ScalarProperty Name="Supplier_ID" ColumnName="Supplier_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Supplier_Request">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.Supplier_Request">
+        <MappingFragment StoreEntitySet="Supplier_Request">
+          <ScalarProperty Name="Supplier_Request_ID" ColumnName="Supplier_Request_ID" />
+          <ScalarProperty Name="Item_Name" ColumnName="Item_Name" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Supplier_Request_Status_ID" ColumnName="Supplier_Request_Status_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Supplier_Request_Status">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.Supplier_Request_Status">
+        <MappingFragment StoreEntitySet="Supplier_Request_Status">
+          <ScalarProperty Name="Supplier_Request_Status_ID" ColumnName="Supplier_Request_Status_ID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Supplier_Type">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.Supplier_Type">
+        <MappingFragment StoreEntitySet="Supplier_Type">
+          <ScalarProperty Name="Supplier_Type_ID" ColumnName="Supplier_Type_ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tasks">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.Task">
+        <MappingFragment StoreEntitySet="Task">
+          <ScalarProperty Name="Task_ID" ColumnName="Task_ID" />
+          <ScalarProperty Name="Phase_ID" ColumnName="Phase_ID" />
+          <ScalarProperty Name="Task_Status_ID" ColumnName="Task_Status_ID" />
+          <ScalarProperty Name="Task_Description" ColumnName="Task_Description" />
+          <ScalarProperty Name="Start_Date" ColumnName="Start_Date" />
+          <ScalarProperty Name="End_Date" ColumnName="End_Date" />
+          <ScalarProperty Name="Equipment" ColumnName="Equipment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Task_Status">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.Task_Status">
+        <MappingFragment StoreEntitySet="Task_Status">
+          <ScalarProperty Name="Task_Status_ID" ColumnName="Task_Status_ID" />
+          <ScalarProperty Name="Status_Type" ColumnName="Status_Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tasks_Equipment">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.Tasks_Equipment">
+        <MappingFragment StoreEntitySet="Tasks_Equipment">
+          <ScalarProperty Name="Tasks_Equipment_ID" ColumnName="Tasks_Equipment_ID" />
+          <ScalarProperty Name="Task_ID" ColumnName="Task_ID" />
+          <ScalarProperty Name="Equipment_ID" ColumnName="Equipment_ID" />
+          <ScalarProperty Name="Checkout_Equipment" ColumnName="Checkout_Equipment" />
+          <ScalarProperty Name="Checkin_Equipment" ColumnName="Checkin_Equipment" />
+          <ScalarProperty Name="Quantity_Checkout" ColumnName="Quantity_Checkout" />
+          <ScalarProperty Name="Quantity_Checkin" ColumnName="Quantity_Checkin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tenders">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.Tender">
+        <MappingFragment StoreEntitySet="Tender">
+          <ScalarProperty Name="Tender_ID" ColumnName="Tender_ID" />
+          <ScalarProperty Name="Tender_Status_ID" ColumnName="Tender_Status_ID" />
+          <ScalarProperty Name="Tender_Name" ColumnName="Tender_Name" />
+          <ScalarProperty Name="Tender_Source" ColumnName="Tender_Source" />
+          <ScalarProperty Name="Budget" ColumnName="Budget" />
+          <ScalarProperty Name="Project_ID" ColumnName="Project_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tender_Request">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.Tender_Request">
+        <MappingFragment StoreEntitySet="Tender_Request">
+          <ScalarProperty Name="Tender_Request_ID" ColumnName="Tender_Request_ID" />
+          <ScalarProperty Name="Tender_Request_Status_ID" ColumnName="Tender_Request_Status_ID" />
+          <ScalarProperty Name="Client_ID" ColumnName="Client_ID" />
+          <ScalarProperty Name="Tender_ID" ColumnName="Tender_ID" />
+          <ScalarProperty Name="Tender_Name" ColumnName="Tender_Name" />
+          <ScalarProperty Name="Advertisement_Document" ColumnName="Advertisement_Document" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tender_Request_Status">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.Tender_Request_Status">
+        <MappingFragment StoreEntitySet="Tender_Request_Status">
+          <ScalarProperty Name="Tender_Request_Status_ID" ColumnName="Tender_Request_Status_ID" />
+          <ScalarProperty Name="Status_Type" ColumnName="Status_Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tender_Status">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.Tender_Status">
+        <MappingFragment StoreEntitySet="Tender_Status">
+          <ScalarProperty Name="Tender_Status_ID" ColumnName="Tender_Status_ID" />
+          <ScalarProperty Name="Status_Type" ColumnName="Status_Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+          <ScalarProperty Name="User_Role_ID" ColumnName="User_Role_ID" />
+          <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
+          <ScalarProperty Name="Password_ID" ColumnName="Password_ID" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User_Role">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.User_Role">
+        <MappingFragment StoreEntitySet="User_Role">
+          <ScalarProperty Name="User_Role_ID" ColumnName="User_Role_ID" />
+          <ScalarProperty Name="Role_Name" ColumnName="Role_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WriteOff_Inventory">
+      <EntityTypeMapping TypeName="Gabriq_System_DatabaseModel.WriteOff_Inventory">
+        <MappingFragment StoreEntitySet="WriteOff_Inventory">
+          <ScalarProperty Name="WriteoffInventory_ID" ColumnName="WriteoffInventory_ID" />
+          <ScalarProperty Name="Item_Name" ColumnName="Item_Name" />
+          <ScalarProperty Name="Quality" ColumnName="Quality" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

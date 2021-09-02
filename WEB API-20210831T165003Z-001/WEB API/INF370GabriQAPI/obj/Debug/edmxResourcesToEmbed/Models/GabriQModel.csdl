@@ -1,0 +1,1235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Gabriq_System_DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Category_ID" />
+    </Key>
+    <Property Name="Category_ID" Type="Int32" Nullable="false" />
+    <Property Name="Category_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Category_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Inventories" Relationship="Self.FK_Inventory_Category" FromRole="Category" ToRole="Inventory" />
+  </EntityType>
+  <EntityType Name="Checkout_Checkin">
+    <Key>
+      <PropertyRef Name="Checkout_ID" />
+    </Key>
+    <Property Name="Checkout_ID" Type="Int32" Nullable="false" />
+    <Property Name="Checkout_Equip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Checkin_Equip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Checkout_Checkin_Date" Relationship="Self.FK_Checkout_Checkin_Date_Checkout_Checkin" FromRole="Checkout_Checkin" ToRole="Checkout_Checkin_Date" />
+  </EntityType>
+  <EntityType Name="Checkout_Checkin_Date">
+    <Key>
+      <PropertyRef Name="Checkout_Date_ID" />
+    </Key>
+    <Property Name="Checkout_Date_ID" Type="Int32" Nullable="false" />
+    <Property Name="Tasks_Equipment_ID" Type="Int32" />
+    <Property Name="Checkout_Date" Type="DateTime" Precision="0" />
+    <Property Name="Checkin_Date" Type="DateTime" Precision="0" />
+    <Property Name="Checkout_ID" Type="Int32" />
+    <NavigationProperty Name="Checkout_Checkin" Relationship="Self.FK_Checkout_Checkin_Date_Checkout_Checkin" FromRole="Checkout_Checkin_Date" ToRole="Checkout_Checkin" />
+    <NavigationProperty Name="Tasks_Equipment" Relationship="Self.FK_Checkout_Checkin_Date_Tasks_Equipment" FromRole="Checkout_Checkin_Date" ToRole="Tasks_Equipment" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="Client_ID" />
+    </Key>
+    <Property Name="Client_ID" Type="Int32" Nullable="false" />
+    <Property Name="Client_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Client_Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Contact_Person" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Telephone_Numbers" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="Tender_Request" Relationship="Self.FK_Tender_Request_Client" FromRole="Client" ToRole="Tender_Request" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Employee_ID" />
+    </Key>
+    <Property Name="Employee_ID" Type="Int32" Nullable="false" />
+    <Property Name="Employee_Type_ID" Type="Int32" />
+    <Property Name="Employee_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Employee_Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Employee_ID_Number" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Employee_Telephone_Number" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Employee_Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Employee_Email_Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Employee_Type" Relationship="Self.FK_Employee_Employee_Type" FromRole="Employee" ToRole="Employee_Type" />
+    <NavigationProperty Name="Employee_Task" Relationship="Self.FK_Employee_Task_Employee" FromRole="Employee" ToRole="Employee_Task" />
+    <NavigationProperty Name="Supplier_Order" Relationship="Self.FK_Supplier_Order_Employee" FromRole="Employee" ToRole="Supplier_Order" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_User_Employee" FromRole="Employee" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Employee_Task">
+    <Key>
+      <PropertyRef Name="Employee_Task_ID" />
+    </Key>
+    <Property Name="Employee_Task_ID" Type="Int32" Nullable="false" />
+    <Property Name="Employee_ID" Type="Int32" Nullable="false" />
+    <Property Name="Task_ID" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_Task_Employee" FromRole="Employee_Task" ToRole="Employee" />
+    <NavigationProperty Name="Task" Relationship="Self.FK_Employee_Task_Task" FromRole="Employee_Task" ToRole="Task" />
+  </EntityType>
+  <EntityType Name="Employee_Type">
+    <Key>
+      <PropertyRef Name="Employee_Type_ID" />
+    </Key>
+    <Property Name="Employee_Type_ID" Type="Int32" Nullable="false" />
+    <Property Name="Employee_Type_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_Employee_Type" FromRole="Employee_Type" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Equipment">
+    <Key>
+      <PropertyRef Name="Equipment_ID" />
+    </Key>
+    <Property Name="Equipment_ID" Type="Int32" Nullable="false" />
+    <Property Name="Equipment_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Equipment_Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Equipment_Condition" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Quantity" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <NavigationProperty Name="Tasks_Equipment" Relationship="Self.FK_Tasks_Equipment_Equipment" FromRole="Equipment" ToRole="Tasks_Equipment" />
+  </EntityType>
+  <EntityType Name="Inventory">
+    <Key>
+      <PropertyRef Name="Inventory_ID" />
+    </Key>
+    <Property Name="Inventory_ID" Type="Int32" Nullable="false" />
+    <Property Name="Category_ID" Type="Int32" Nullable="false" />
+    <Property Name="Inventory_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Inventory_Description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Quantity" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <NavigationProperty Name="Category" Relationship="Self.FK_Inventory_Category" FromRole="Inventory" ToRole="Category" />
+    <NavigationProperty Name="Inventory_On_Hand" Relationship="Self.FK_Inventory_On_Hand_Inventory" FromRole="Inventory" ToRole="Inventory_On_Hand" />
+    <NavigationProperty Name="Orderlines" Relationship="Self.FK_Orderline_Inventory" FromRole="Inventory" ToRole="Orderline" />
+    <NavigationProperty Name="Phase_Inventory" Relationship="Self.FK_Phase_Inventory_Inventory" FromRole="Inventory" ToRole="Phase_Inventory" />
+    <NavigationProperty Name="Rental_Line" Relationship="Self.FK_Rental_Line_Inventory" FromRole="Inventory" ToRole="Rental_Line" />
+  </EntityType>
+  <EntityType Name="Inventory_On_Hand">
+    <Key>
+      <PropertyRef Name="Inventory_On_Hand_ID" />
+    </Key>
+    <Property Name="Inventory_On_Hand_ID" Type="Int32" Nullable="false" />
+    <Property Name="Inventory_ID" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="WriteoffInventory_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Inventory" Relationship="Self.FK_Inventory_On_Hand_Inventory" FromRole="Inventory_On_Hand" ToRole="Inventory" />
+    <NavigationProperty Name="WriteOff_Inventory" Relationship="Self.FK_Inventory_On_Hand_WriteOff_Inventory" FromRole="Inventory_On_Hand" ToRole="WriteOff_Inventory" />
+  </EntityType>
+  <EntityType Name="Order_Status">
+    <Key>
+      <PropertyRef Name="Order_Status_ID" />
+    </Key>
+    <Property Name="Order_Status_ID" Type="Int32" Nullable="false" />
+    <Property Name="Status_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Supplier_Order" Relationship="Self.FK_Supplier_Order_Order_Status" FromRole="Order_Status" ToRole="Supplier_Order" />
+  </EntityType>
+  <EntityType Name="Orderline">
+    <Key>
+      <PropertyRef Name="Orderline_ID" />
+    </Key>
+    <Property Name="Orderline_ID" Type="Int32" Nullable="false" />
+    <Property Name="Inventory_ID" Type="Int32" Nullable="false" />
+    <Property Name="Inventory_Item" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Quantity" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Unit_Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Total_Cost" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <NavigationProperty Name="Inventory" Relationship="Self.FK_Orderline_Inventory" FromRole="Orderline" ToRole="Inventory" />
+  </EntityType>
+  <EntityType Name="Password_History">
+    <Key>
+      <PropertyRef Name="Password_ID" />
+    </Key>
+    <Property Name="Password_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_User_Password_History" FromRole="Password_History" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Payment_Type">
+    <Key>
+      <PropertyRef Name="Payment_Type_ID" />
+    </Key>
+    <Property Name="Payment_Type_ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Supplier_Order" Relationship="Self.FK_Supplier_Order_Payment_Type" FromRole="Payment_Type" ToRole="Supplier_Order" />
+  </EntityType>
+  <EntityType Name="Phase">
+    <Key>
+      <PropertyRef Name="Phase_ID" />
+    </Key>
+    <Property Name="Phase_ID" Type="Int32" Nullable="false" />
+    <Property Name="Phase_Status_ID" Type="Int32" Nullable="false" />
+    <Property Name="Project_ID" Type="Int32" Nullable="false" />
+    <Property Name="Phase_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Phase_Description" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Start_Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="End_Date" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Phase_Inventory" Relationship="Self.FK_Phase_Inventory_Phase" FromRole="Phase" ToRole="Phase_Inventory" />
+    <NavigationProperty Name="Phase_Status" Relationship="Self.FK_Phase_Phase_Status" FromRole="Phase" ToRole="Phase_Status" />
+    <NavigationProperty Name="Project" Relationship="Self.FK_Phase_Project" FromRole="Phase" ToRole="Project" />
+    <NavigationProperty Name="Projects" Relationship="Self.FK_Project_Phase" FromRole="Phase" ToRole="Project" />
+    <NavigationProperty Name="Subcontractor_Phase" Relationship="Self.FK_Subcontractor_Phase_Phase" FromRole="Phase" ToRole="Subcontractor_Phase" />
+    <NavigationProperty Name="Tasks" Relationship="Self.FK_Task_Phase" FromRole="Phase" ToRole="Task" />
+  </EntityType>
+  <EntityType Name="Phase_Inventory">
+    <Key>
+      <PropertyRef Name="Phase_Inventory_ID" />
+    </Key>
+    <Property Name="Phase_Inventory_ID" Type="Int32" Nullable="false" />
+    <Property Name="Phase_ID" Type="Int32" />
+    <Property Name="Inventory_ID" Type="Int32" />
+    <Property Name="Quantity" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="Inventory" Relationship="Self.FK_Phase_Inventory_Inventory" FromRole="Phase_Inventory" ToRole="Inventory" />
+    <NavigationProperty Name="Phase" Relationship="Self.FK_Phase_Inventory_Phase" FromRole="Phase_Inventory" ToRole="Phase" />
+  </EntityType>
+  <EntityType Name="Phase_Status">
+    <Key>
+      <PropertyRef Name="Phase_Status_ID" />
+    </Key>
+    <Property Name="Phase_Status_ID" Type="Int32" Nullable="false" />
+    <Property Name="Status_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Phases" Relationship="Self.FK_Phase_Phase_Status" FromRole="Phase_Status" ToRole="Phase" />
+  </EntityType>
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="Project_ID" />
+    </Key>
+    <Property Name="Project_ID" Type="Int32" Nullable="false" />
+    <Property Name="Project_Status_ID" Type="Int32" Nullable="false" />
+    <Property Name="Project_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Project_Description" Type="String" MaxLength="350" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Start_Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="End_Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Site_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Site_Address" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Tender_ID" Type="Int32" Nullable="false" />
+    <Property Name="Phase_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Phases" Relationship="Self.FK_Phase_Project" FromRole="Project" ToRole="Phase" />
+    <NavigationProperty Name="Phase" Relationship="Self.FK_Project_Phase" FromRole="Project" ToRole="Phase" />
+    <NavigationProperty Name="Project_Status" Relationship="Self.FK_Project_Project_Status" FromRole="Project" ToRole="Project_Status" />
+    <NavigationProperty Name="Tender" Relationship="Self.FK_Project_Tender" FromRole="Project" ToRole="Tender" />
+    <NavigationProperty Name="Supplier_Order" Relationship="Self.FK_Supplier_Order_Project" FromRole="Project" ToRole="Supplier_Order" />
+    <NavigationProperty Name="Tenders" Relationship="Self.FK_Tender_Project" FromRole="Project" ToRole="Tender" />
+  </EntityType>
+  <EntityType Name="Project_Status">
+    <Key>
+      <PropertyRef Name="Project_Status_ID" />
+    </Key>
+    <Property Name="Project_Status_ID" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Comments" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Projects" Relationship="Self.FK_Project_Project_Status" FromRole="Project_Status" ToRole="Project" />
+  </EntityType>
+  <EntityType Name="Rental">
+    <Key>
+      <PropertyRef Name="Rental_ID" />
+    </Key>
+    <Property Name="Rental_ID" Type="Int32" Nullable="false" />
+    <Property Name="Rental_Status_ID" Type="Int32" Nullable="false" />
+    <Property Name="Supplier_ID" Type="Int32" Nullable="false" />
+    <Property Name="Rental_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Rental_Cost" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <NavigationProperty Name="Rental_Status" Relationship="Self.FK_Rental_Rental_Status" FromRole="Rental" ToRole="Rental_Status" />
+    <NavigationProperty Name="Supplier" Relationship="Self.FK_Rental_Supplier" FromRole="Rental" ToRole="Supplier" />
+  </EntityType>
+  <EntityType Name="Rental_Line">
+    <Key>
+      <PropertyRef Name="Rental_Line_ID" />
+    </Key>
+    <Property Name="Rental_Line_ID" Type="Int32" Nullable="false" />
+    <Property Name="Inventory_ID" Type="Int32" Nullable="false" />
+    <Property Name="Rental_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Start_Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="End_Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Cost" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <NavigationProperty Name="Inventory" Relationship="Self.FK_Rental_Line_Inventory" FromRole="Rental_Line" ToRole="Inventory" />
+  </EntityType>
+  <EntityType Name="Rental_Request">
+    <Key>
+      <PropertyRef Name="Rental_Request_ID" />
+    </Key>
+    <Property Name="Rental_Request_ID" Type="Int32" Nullable="false" />
+    <Property Name="Supplier_ID" Type="Int32" />
+    <Property Name="Rental_Item" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Quantity" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Request_Date" Type="DateTime" Precision="0" />
+    <Property Name="Rental_Request_Status_ID" Type="Int32" />
+    <NavigationProperty Name="Rental_Request_Status" Relationship="Self.FK_Rental_Request_Rental_Request_Status" FromRole="Rental_Request" ToRole="Rental_Request_Status" />
+    <NavigationProperty Name="Supplier" Relationship="Self.FK_Rental_Request_Supplier" FromRole="Rental_Request" ToRole="Supplier" />
+  </EntityType>
+  <EntityType Name="Rental_Request_Status">
+    <Key>
+      <PropertyRef Name="Rental_Request_Status_ID" />
+    </Key>
+    <Property Name="Rental_Request_Status_ID" Type="Int32" Nullable="false" />
+    <Property Name="Status_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Rental_Request" Relationship="Self.FK_Rental_Request_Rental_Request_Status" FromRole="Rental_Request_Status" ToRole="Rental_Request" />
+  </EntityType>
+  <EntityType Name="Rental_Status">
+    <Key>
+      <PropertyRef Name="Rental_Status_ID" />
+    </Key>
+    <Property Name="Rental_Status_ID" Type="Int32" Nullable="false" />
+    <Property Name="Status_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Rentals" Relationship="Self.FK_Rental_Rental_Status" FromRole="Rental_Status" ToRole="Rental" />
+  </EntityType>
+  <EntityType Name="Subcontractor">
+    <Key>
+      <PropertyRef Name="Subcontractor_ID" />
+    </Key>
+    <Property Name="Subcontractor_ID" Type="Int32" Nullable="false" />
+    <Property Name="Sub_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Sub_Address" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Sub_Job_Description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Telephone_Number" Type="String" MaxLength="14" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email_Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Subcontractor_Phase" Relationship="Self.FK_Subcontractor_Phase_Subcontractor" FromRole="Subcontractor" ToRole="Subcontractor_Phase" />
+  </EntityType>
+  <EntityType Name="Subcontractor_Phase">
+    <Key>
+      <PropertyRef Name="Subcontractor_Phase_ID" />
+    </Key>
+    <Property Name="Subcontractor_Phase_ID" Type="Int32" Nullable="false" />
+    <Property Name="Subcontractor_ID" Type="Int32" />
+    <Property Name="Phase_ID" Type="Int32" />
+    <NavigationProperty Name="Phase" Relationship="Self.FK_Subcontractor_Phase_Phase" FromRole="Subcontractor_Phase" ToRole="Phase" />
+    <NavigationProperty Name="Subcontractor" Relationship="Self.FK_Subcontractor_Phase_Subcontractor" FromRole="Subcontractor_Phase" ToRole="Subcontractor" />
+  </EntityType>
+  <EntityType Name="Supplier">
+    <Key>
+      <PropertyRef Name="Supplier_ID" />
+    </Key>
+    <Property Name="Supplier_ID" Type="Int32" Nullable="false" />
+    <Property Name="Supplier_Type_ID" Type="Int32" />
+    <Property Name="Supplier_Request_ID" Type="Int32" />
+    <Property Name="Supplier_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Supplier_Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Supplier_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Supplier_Telephone_Number" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="Rentals" Relationship="Self.FK_Rental_Supplier" FromRole="Supplier" ToRole="Rental" />
+    <NavigationProperty Name="Rental_Request" Relationship="Self.FK_Rental_Request_Supplier" FromRole="Supplier" ToRole="Rental_Request" />
+    <NavigationProperty Name="Supplier_Order" Relationship="Self.FK_Supplier_Order_Supplier" FromRole="Supplier" ToRole="Supplier_Order" />
+    <NavigationProperty Name="Supplier_Request" Relationship="Self.FK_Supplier_Supplier_Request" FromRole="Supplier" ToRole="Supplier_Request" />
+    <NavigationProperty Name="Supplier_Type" Relationship="Self.FK_Supplier_Supplier_Type" FromRole="Supplier" ToRole="Supplier_Type" />
+  </EntityType>
+  <EntityType Name="Supplier_Order">
+    <Key>
+      <PropertyRef Name="Supplier_Order_ID" />
+    </Key>
+    <Property Name="Supplier_Order_ID" Type="Int32" Nullable="false" />
+    <Property Name="Project_ID" Type="Int32" Nullable="false" />
+    <Property Name="Order_Status_ID" Type="Int32" Nullable="false" />
+    <Property Name="Payment_Type_ID" Type="Int32" Nullable="false" />
+    <Property Name="Employee_ID" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Order_Items" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Total_Cost" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Supplier_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_Supplier_Order_Employee" FromRole="Supplier_Order" ToRole="Employee" />
+    <NavigationProperty Name="Order_Status" Relationship="Self.FK_Supplier_Order_Order_Status" FromRole="Supplier_Order" ToRole="Order_Status" />
+    <NavigationProperty Name="Payment_Type" Relationship="Self.FK_Supplier_Order_Payment_Type" FromRole="Supplier_Order" ToRole="Payment_Type" />
+    <NavigationProperty Name="Project" Relationship="Self.FK_Supplier_Order_Project" FromRole="Supplier_Order" ToRole="Project" />
+    <NavigationProperty Name="Supplier" Relationship="Self.FK_Supplier_Order_Supplier" FromRole="Supplier_Order" ToRole="Supplier" />
+    <NavigationProperty Name="Supplier_Order1" Relationship="Self.FK_Supplier_Order_Supplier_Order" FromRole="Supplier_Order" ToRole="Supplier_Order1" />
+    <NavigationProperty Name="Supplier_Order2" Relationship="Self.FK_Supplier_Order_Supplier_Order" FromRole="Supplier_Order1" ToRole="Supplier_Order" />
+  </EntityType>
+  <EntityType Name="Supplier_Request">
+    <Key>
+      <PropertyRef Name="Supplier_Request_ID" />
+    </Key>
+    <Property Name="Supplier_Request_ID" Type="Int32" Nullable="false" />
+    <Property Name="Item_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Quantity" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="Supplier_Request_Status_ID" Type="Int32" />
+    <NavigationProperty Name="Suppliers" Relationship="Self.FK_Supplier_Supplier_Request" FromRole="Supplier_Request" ToRole="Supplier" />
+    <NavigationProperty Name="Supplier_Request_Status" Relationship="Self.FK_Supplier_Request_Supplier_Request_Status" FromRole="Supplier_Request" ToRole="Supplier_Request_Status" />
+  </EntityType>
+  <EntityType Name="Supplier_Request_Status">
+    <Key>
+      <PropertyRef Name="Supplier_Request_Status_ID" />
+    </Key>
+    <Property Name="Supplier_Request_Status_ID" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Supplier_Request" Relationship="Self.FK_Supplier_Request_Supplier_Request_Status" FromRole="Supplier_Request_Status" ToRole="Supplier_Request" />
+  </EntityType>
+  <EntityType Name="Supplier_Type">
+    <Key>
+      <PropertyRef Name="Supplier_Type_ID" />
+    </Key>
+    <Property Name="Supplier_Type_ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Suppliers" Relationship="Self.FK_Supplier_Supplier_Type" FromRole="Supplier_Type" ToRole="Supplier" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Task">
+    <Key>
+      <PropertyRef Name="Task_ID" />
+    </Key>
+    <Property Name="Task_ID" Type="Int32" Nullable="false" />
+    <Property Name="Phase_ID" Type="Int32" Nullable="false" />
+    <Property Name="Task_Status_ID" Type="Int32" Nullable="false" />
+    <Property Name="Task_Description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Start_Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="End_Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Equipment" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Employee_Task" Relationship="Self.FK_Employee_Task_Task" FromRole="Task" ToRole="Employee_Task" />
+    <NavigationProperty Name="Phase" Relationship="Self.FK_Task_Phase" FromRole="Task" ToRole="Phase" />
+    <NavigationProperty Name="Task_Status" Relationship="Self.FK_Task_Task_Status" FromRole="Task" ToRole="Task_Status" />
+    <NavigationProperty Name="Tasks_Equipment" Relationship="Self.FK_Tasks_Equipment_Task" FromRole="Task" ToRole="Tasks_Equipment" />
+  </EntityType>
+  <EntityType Name="Task_Status">
+    <Key>
+      <PropertyRef Name="Task_Status_ID" />
+    </Key>
+    <Property Name="Task_Status_ID" Type="Int32" Nullable="false" />
+    <Property Name="Status_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Tasks" Relationship="Self.FK_Task_Task_Status" FromRole="Task_Status" ToRole="Task" />
+  </EntityType>
+  <EntityType Name="Tasks_Equipment">
+    <Key>
+      <PropertyRef Name="Tasks_Equipment_ID" />
+    </Key>
+    <Property Name="Tasks_Equipment_ID" Type="Int32" Nullable="false" />
+    <Property Name="Task_ID" Type="Int32" Nullable="false" />
+    <Property Name="Equipment_ID" Type="Int32" Nullable="false" />
+    <Property Name="Checkout_Equipment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Checkin_Equipment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Quantity_Checkout" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Quantity_Checkin" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="Checkout_Checkin_Date" Relationship="Self.FK_Checkout_Checkin_Date_Tasks_Equipment" FromRole="Tasks_Equipment" ToRole="Checkout_Checkin_Date" />
+    <NavigationProperty Name="Equipment" Relationship="Self.FK_Tasks_Equipment_Equipment" FromRole="Tasks_Equipment" ToRole="Equipment" />
+    <NavigationProperty Name="Task" Relationship="Self.FK_Tasks_Equipment_Task" FromRole="Tasks_Equipment" ToRole="Task" />
+  </EntityType>
+  <EntityType Name="Tender">
+    <Key>
+      <PropertyRef Name="Tender_ID" />
+    </Key>
+    <Property Name="Tender_ID" Type="Int32" Nullable="false" />
+    <Property Name="Tender_Status_ID" Type="Int32" Nullable="false" />
+    <Property Name="Tender_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Tender_Source" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Budget" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Project_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Projects" Relationship="Self.FK_Project_Tender" FromRole="Tender" ToRole="Project" />
+    <NavigationProperty Name="Project" Relationship="Self.FK_Tender_Project" FromRole="Tender" ToRole="Project" />
+    <NavigationProperty Name="Tender_Request" Relationship="Self.FK_Tender_Request_Tender" FromRole="Tender" ToRole="Tender_Request" />
+    <NavigationProperty Name="Tender_Status" Relationship="Self.FK_Tender_Tender_Status" FromRole="Tender" ToRole="Tender_Status" />
+  </EntityType>
+  <EntityType Name="Tender_Request">
+    <Key>
+      <PropertyRef Name="Tender_Request_ID" />
+    </Key>
+    <Property Name="Tender_Request_ID" Type="Int32" Nullable="false" />
+    <Property Name="Tender_Request_Status_ID" Type="Int32" Nullable="false" />
+    <Property Name="Client_ID" Type="Int32" Nullable="false" />
+    <Property Name="Tender_ID" Type="Int32" Nullable="false" />
+    <Property Name="Tender_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Advertisement_Document" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Client" Relationship="Self.FK_Tender_Request_Client" FromRole="Tender_Request" ToRole="Client" />
+    <NavigationProperty Name="Tender" Relationship="Self.FK_Tender_Request_Tender" FromRole="Tender_Request" ToRole="Tender" />
+    <NavigationProperty Name="Tender_Request_Status" Relationship="Self.FK_Tender_Request_Tender_Request_Status" FromRole="Tender_Request" ToRole="Tender_Request_Status" />
+  </EntityType>
+  <EntityType Name="Tender_Request_Status">
+    <Key>
+      <PropertyRef Name="Tender_Request_Status_ID" />
+    </Key>
+    <Property Name="Tender_Request_Status_ID" Type="Int32" Nullable="false" />
+    <Property Name="Status_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Tender_Request" Relationship="Self.FK_Tender_Request_Tender_Request_Status" FromRole="Tender_Request_Status" ToRole="Tender_Request" />
+  </EntityType>
+  <EntityType Name="Tender_Status">
+    <Key>
+      <PropertyRef Name="Tender_Status_ID" />
+    </Key>
+    <Property Name="Tender_Status_ID" Type="Int32" Nullable="false" />
+    <Property Name="Status_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Tenders" Relationship="Self.FK_Tender_Tender_Status" FromRole="Tender_Status" ToRole="Tender" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="User_ID" />
+    </Key>
+    <Property Name="User_ID" Type="Int32" Nullable="false" />
+    <Property Name="User_Role_ID" Type="Int32" Nullable="false" />
+    <Property Name="Employee_ID" Type="Int32" Nullable="false" />
+    <Property Name="Password_ID" Type="Int32" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_User_Employee" FromRole="User" ToRole="Employee" />
+    <NavigationProperty Name="Password_History" Relationship="Self.FK_User_Password_History" FromRole="User" ToRole="Password_History" />
+    <NavigationProperty Name="User_Role" Relationship="Self.FK_User_User_Role" FromRole="User" ToRole="User_Role" />
+  </EntityType>
+  <EntityType Name="User_Role">
+    <Key>
+      <PropertyRef Name="User_Role_ID" />
+    </Key>
+    <Property Name="User_Role_ID" Type="Int32" Nullable="false" />
+    <Property Name="Role_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_User_User_Role" FromRole="User_Role" ToRole="User" />
+  </EntityType>
+  <EntityType Name="WriteOff_Inventory">
+    <Key>
+      <PropertyRef Name="WriteoffInventory_ID" />
+    </Key>
+    <Property Name="WriteoffInventory_ID" Type="Int32" Nullable="false" />
+    <Property Name="Item_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Quality" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Reason" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Inventory_On_Hand" Relationship="Self.FK_Inventory_On_Hand_WriteOff_Inventory" FromRole="WriteOff_Inventory" ToRole="Inventory_On_Hand" />
+  </EntityType>
+  <Association Name="FK_Inventory_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Category_ID" />
+      </Principal>
+      <Dependent Role="Inventory">
+        <PropertyRef Name="Category_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Checkout_Checkin_Date_Checkout_Checkin">
+    <End Role="Checkout_Checkin" Type="Self.Checkout_Checkin" Multiplicity="0..1" />
+    <End Role="Checkout_Checkin_Date" Type="Self.Checkout_Checkin_Date" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Checkout_Checkin">
+        <PropertyRef Name="Checkout_ID" />
+      </Principal>
+      <Dependent Role="Checkout_Checkin_Date">
+        <PropertyRef Name="Checkout_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Checkout_Checkin_Date_Tasks_Equipment">
+    <End Role="Tasks_Equipment" Type="Self.Tasks_Equipment" Multiplicity="0..1" />
+    <End Role="Checkout_Checkin_Date" Type="Self.Checkout_Checkin_Date" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tasks_Equipment">
+        <PropertyRef Name="Tasks_Equipment_ID" />
+      </Principal>
+      <Dependent Role="Checkout_Checkin_Date">
+        <PropertyRef Name="Tasks_Equipment_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tender_Request_Client">
+    <End Role="Client" Type="Self.Client" Multiplicity="1" />
+    <End Role="Tender_Request" Type="Self.Tender_Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Client_ID" />
+      </Principal>
+      <Dependent Role="Tender_Request">
+        <PropertyRef Name="Client_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Employee_Type">
+    <End Role="Employee_Type" Type="Self.Employee_Type" Multiplicity="0..1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee_Type">
+        <PropertyRef Name="Employee_Type_ID" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="Employee_Type_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Task_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Employee_Task" Type="Self.Employee_Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Employee_ID" />
+      </Principal>
+      <Dependent Role="Employee_Task">
+        <PropertyRef Name="Employee_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Supplier_Order_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Supplier_Order" Type="Self.Supplier_Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Employee_ID" />
+      </Principal>
+      <Dependent Role="Supplier_Order">
+        <PropertyRef Name="Employee_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Employee_ID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Employee_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Task_Task">
+    <End Role="Task" Type="Self.Task" Multiplicity="1" />
+    <End Role="Employee_Task" Type="Self.Employee_Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Task">
+        <PropertyRef Name="Task_ID" />
+      </Principal>
+      <Dependent Role="Employee_Task">
+        <PropertyRef Name="Task_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tasks_Equipment_Equipment">
+    <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
+    <End Role="Tasks_Equipment" Type="Self.Tasks_Equipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipment">
+        <PropertyRef Name="Equipment_ID" />
+      </Principal>
+      <Dependent Role="Tasks_Equipment">
+        <PropertyRef Name="Equipment_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inventory_On_Hand_Inventory">
+    <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
+    <End Role="Inventory_On_Hand" Type="Self.Inventory_On_Hand" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Inventory">
+        <PropertyRef Name="Inventory_ID" />
+      </Principal>
+      <Dependent Role="Inventory_On_Hand">
+        <PropertyRef Name="Inventory_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orderline_Inventory">
+    <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
+    <End Role="Orderline" Type="Self.Orderline" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Inventory">
+        <PropertyRef Name="Inventory_ID" />
+      </Principal>
+      <Dependent Role="Orderline">
+        <PropertyRef Name="Inventory_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Phase_Inventory_Inventory">
+    <End Role="Inventory" Type="Self.Inventory" Multiplicity="0..1" />
+    <End Role="Phase_Inventory" Type="Self.Phase_Inventory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Inventory">
+        <PropertyRef Name="Inventory_ID" />
+      </Principal>
+      <Dependent Role="Phase_Inventory">
+        <PropertyRef Name="Inventory_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rental_Line_Inventory">
+    <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
+    <End Role="Rental_Line" Type="Self.Rental_Line" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Inventory">
+        <PropertyRef Name="Inventory_ID" />
+      </Principal>
+      <Dependent Role="Rental_Line">
+        <PropertyRef Name="Inventory_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inventory_On_Hand_WriteOff_Inventory">
+    <End Role="WriteOff_Inventory" Type="Self.WriteOff_Inventory" Multiplicity="1" />
+    <End Role="Inventory_On_Hand" Type="Self.Inventory_On_Hand" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WriteOff_Inventory">
+        <PropertyRef Name="WriteoffInventory_ID" />
+      </Principal>
+      <Dependent Role="Inventory_On_Hand">
+        <PropertyRef Name="WriteoffInventory_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Supplier_Order_Order_Status">
+    <End Role="Order_Status" Type="Self.Order_Status" Multiplicity="1" />
+    <End Role="Supplier_Order" Type="Self.Supplier_Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order_Status">
+        <PropertyRef Name="Order_Status_ID" />
+      </Principal>
+      <Dependent Role="Supplier_Order">
+        <PropertyRef Name="Order_Status_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Password_History">
+    <End Role="Password_History" Type="Self.Password_History" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Password_History">
+        <PropertyRef Name="Password_ID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Password_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Supplier_Order_Payment_Type">
+    <End Role="Payment_Type" Type="Self.Payment_Type" Multiplicity="1" />
+    <End Role="Supplier_Order" Type="Self.Supplier_Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Payment_Type">
+        <PropertyRef Name="Payment_Type_ID" />
+      </Principal>
+      <Dependent Role="Supplier_Order">
+        <PropertyRef Name="Payment_Type_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Phase_Inventory_Phase">
+    <End Role="Phase" Type="Self.Phase" Multiplicity="0..1" />
+    <End Role="Phase_Inventory" Type="Self.Phase_Inventory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Phase">
+        <PropertyRef Name="Phase_ID" />
+      </Principal>
+      <Dependent Role="Phase_Inventory">
+        <PropertyRef Name="Phase_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Phase_Phase_Status">
+    <End Role="Phase_Status" Type="Self.Phase_Status" Multiplicity="1" />
+    <End Role="Phase" Type="Self.Phase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Phase_Status">
+        <PropertyRef Name="Phase_Status_ID" />
+      </Principal>
+      <Dependent Role="Phase">
+        <PropertyRef Name="Phase_Status_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Phase_Project">
+    <End Role="Project" Type="Self.Project" Multiplicity="1" />
+    <End Role="Phase" Type="Self.Phase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Project_ID" />
+      </Principal>
+      <Dependent Role="Phase">
+        <PropertyRef Name="Project_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Project_Phase">
+    <End Role="Phase" Type="Self.Phase" Multiplicity="1" />
+    <End Role="Project" Type="Self.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Phase">
+        <PropertyRef Name="Phase_ID" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="Phase_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subcontractor_Phase_Phase">
+    <End Role="Phase" Type="Self.Phase" Multiplicity="0..1" />
+    <End Role="Subcontractor_Phase" Type="Self.Subcontractor_Phase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Phase">
+        <PropertyRef Name="Phase_ID" />
+      </Principal>
+      <Dependent Role="Subcontractor_Phase">
+        <PropertyRef Name="Phase_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Task_Phase">
+    <End Role="Phase" Type="Self.Phase" Multiplicity="1" />
+    <End Role="Task" Type="Self.Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Phase">
+        <PropertyRef Name="Phase_ID" />
+      </Principal>
+      <Dependent Role="Task">
+        <PropertyRef Name="Phase_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Project_Project_Status">
+    <End Role="Project_Status" Type="Self.Project_Status" Multiplicity="1" />
+    <End Role="Project" Type="Self.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project_Status">
+        <PropertyRef Name="Project_Status_ID" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="Project_Status_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Project_Tender">
+    <End Role="Tender" Type="Self.Tender" Multiplicity="1" />
+    <End Role="Project" Type="Self.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tender">
+        <PropertyRef Name="Tender_ID" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="Tender_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Supplier_Order_Project">
+    <End Role="Project" Type="Self.Project" Multiplicity="1" />
+    <End Role="Supplier_Order" Type="Self.Supplier_Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Project_ID" />
+      </Principal>
+      <Dependent Role="Supplier_Order">
+        <PropertyRef Name="Project_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tender_Project">
+    <End Role="Project" Type="Self.Project" Multiplicity="1" />
+    <End Role="Tender" Type="Self.Tender" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Project_ID" />
+      </Principal>
+      <Dependent Role="Tender">
+        <PropertyRef Name="Project_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rental_Rental_Status">
+    <End Role="Rental_Status" Type="Self.Rental_Status" Multiplicity="1" />
+    <End Role="Rental" Type="Self.Rental" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rental_Status">
+        <PropertyRef Name="Rental_Status_ID" />
+      </Principal>
+      <Dependent Role="Rental">
+        <PropertyRef Name="Rental_Status_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rental_Supplier">
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+    <End Role="Rental" Type="Self.Rental" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="Supplier_ID" />
+      </Principal>
+      <Dependent Role="Rental">
+        <PropertyRef Name="Supplier_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rental_Request_Rental_Request_Status">
+    <End Role="Rental_Request_Status" Type="Self.Rental_Request_Status" Multiplicity="0..1" />
+    <End Role="Rental_Request" Type="Self.Rental_Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rental_Request_Status">
+        <PropertyRef Name="Rental_Request_Status_ID" />
+      </Principal>
+      <Dependent Role="Rental_Request">
+        <PropertyRef Name="Rental_Request_Status_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rental_Request_Supplier">
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
+    <End Role="Rental_Request" Type="Self.Rental_Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="Supplier_ID" />
+      </Principal>
+      <Dependent Role="Rental_Request">
+        <PropertyRef Name="Supplier_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subcontractor_Phase_Subcontractor">
+    <End Role="Subcontractor" Type="Self.Subcontractor" Multiplicity="0..1" />
+    <End Role="Subcontractor_Phase" Type="Self.Subcontractor_Phase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subcontractor">
+        <PropertyRef Name="Subcontractor_ID" />
+      </Principal>
+      <Dependent Role="Subcontractor_Phase">
+        <PropertyRef Name="Subcontractor_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Supplier_Order_Supplier">
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+    <End Role="Supplier_Order" Type="Self.Supplier_Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="Supplier_ID" />
+      </Principal>
+      <Dependent Role="Supplier_Order">
+        <PropertyRef Name="Supplier_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Supplier_Supplier_Request">
+    <End Role="Supplier_Request" Type="Self.Supplier_Request" Multiplicity="0..1" />
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier_Request">
+        <PropertyRef Name="Supplier_Request_ID" />
+      </Principal>
+      <Dependent Role="Supplier">
+        <PropertyRef Name="Supplier_Request_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Supplier_Supplier_Type">
+    <End Role="Supplier_Type" Type="Self.Supplier_Type" Multiplicity="0..1" />
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier_Type">
+        <PropertyRef Name="Supplier_Type_ID" />
+      </Principal>
+      <Dependent Role="Supplier">
+        <PropertyRef Name="Supplier_Type_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Supplier_Order_Supplier_Order">
+    <End Role="Supplier_Order" Type="Self.Supplier_Order" Multiplicity="1" />
+    <End Role="Supplier_Order1" Type="Self.Supplier_Order" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier_Order">
+        <PropertyRef Name="Supplier_Order_ID" />
+      </Principal>
+      <Dependent Role="Supplier_Order1">
+        <PropertyRef Name="Supplier_Order_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Supplier_Request_Supplier_Request_Status">
+    <End Role="Supplier_Request_Status" Type="Self.Supplier_Request_Status" Multiplicity="0..1" />
+    <End Role="Supplier_Request" Type="Self.Supplier_Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier_Request_Status">
+        <PropertyRef Name="Supplier_Request_Status_ID" />
+      </Principal>
+      <Dependent Role="Supplier_Request">
+        <PropertyRef Name="Supplier_Request_Status_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Task_Task_Status">
+    <End Role="Task_Status" Type="Self.Task_Status" Multiplicity="1" />
+    <End Role="Task" Type="Self.Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Task_Status">
+        <PropertyRef Name="Task_Status_ID" />
+      </Principal>
+      <Dependent Role="Task">
+        <PropertyRef Name="Task_Status_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tasks_Equipment_Task">
+    <End Role="Task" Type="Self.Task" Multiplicity="1" />
+    <End Role="Tasks_Equipment" Type="Self.Tasks_Equipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Task">
+        <PropertyRef Name="Task_ID" />
+      </Principal>
+      <Dependent Role="Tasks_Equipment">
+        <PropertyRef Name="Task_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tender_Request_Tender">
+    <End Role="Tender" Type="Self.Tender" Multiplicity="1" />
+    <End Role="Tender_Request" Type="Self.Tender_Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tender">
+        <PropertyRef Name="Tender_ID" />
+      </Principal>
+      <Dependent Role="Tender_Request">
+        <PropertyRef Name="Tender_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tender_Tender_Status">
+    <End Role="Tender_Status" Type="Self.Tender_Status" Multiplicity="1" />
+    <End Role="Tender" Type="Self.Tender" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tender_Status">
+        <PropertyRef Name="Tender_Status_ID" />
+      </Principal>
+      <Dependent Role="Tender">
+        <PropertyRef Name="Tender_Status_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tender_Request_Tender_Request_Status">
+    <End Role="Tender_Request_Status" Type="Self.Tender_Request_Status" Multiplicity="1" />
+    <End Role="Tender_Request" Type="Self.Tender_Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tender_Request_Status">
+        <PropertyRef Name="Tender_Request_Status_ID" />
+      </Principal>
+      <Dependent Role="Tender_Request">
+        <PropertyRef Name="Tender_Request_Status_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_User_Role">
+    <End Role="User_Role" Type="Self.User_Role" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_Role">
+        <PropertyRef Name="User_Role_ID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="User_Role_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Gabriq_System_DatabaseEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="Checkout_Checkin" EntityType="Self.Checkout_Checkin" />
+    <EntitySet Name="Checkout_Checkin_Date" EntityType="Self.Checkout_Checkin_Date" />
+    <EntitySet Name="Clients" EntityType="Self.Client" />
+    <EntitySet Name="Employees" EntityType="Self.Employee" />
+    <EntitySet Name="Employee_Task" EntityType="Self.Employee_Task" />
+    <EntitySet Name="Employee_Type" EntityType="Self.Employee_Type" />
+    <EntitySet Name="Equipments" EntityType="Self.Equipment" />
+    <EntitySet Name="Inventories" EntityType="Self.Inventory" />
+    <EntitySet Name="Inventory_On_Hand" EntityType="Self.Inventory_On_Hand" />
+    <EntitySet Name="Order_Status" EntityType="Self.Order_Status" />
+    <EntitySet Name="Orderlines" EntityType="Self.Orderline" />
+    <EntitySet Name="Password_History" EntityType="Self.Password_History" />
+    <EntitySet Name="Payment_Type" EntityType="Self.Payment_Type" />
+    <EntitySet Name="Phases" EntityType="Self.Phase" />
+    <EntitySet Name="Phase_Inventory" EntityType="Self.Phase_Inventory" />
+    <EntitySet Name="Phase_Status" EntityType="Self.Phase_Status" />
+    <EntitySet Name="Projects" EntityType="Self.Project" />
+    <EntitySet Name="Project_Status" EntityType="Self.Project_Status" />
+    <EntitySet Name="Rentals" EntityType="Self.Rental" />
+    <EntitySet Name="Rental_Line" EntityType="Self.Rental_Line" />
+    <EntitySet Name="Rental_Request" EntityType="Self.Rental_Request" />
+    <EntitySet Name="Rental_Request_Status" EntityType="Self.Rental_Request_Status" />
+    <EntitySet Name="Rental_Status" EntityType="Self.Rental_Status" />
+    <EntitySet Name="Subcontractors" EntityType="Self.Subcontractor" />
+    <EntitySet Name="Subcontractor_Phase" EntityType="Self.Subcontractor_Phase" />
+    <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
+    <EntitySet Name="Supplier_Order" EntityType="Self.Supplier_Order" />
+    <EntitySet Name="Supplier_Request" EntityType="Self.Supplier_Request" />
+    <EntitySet Name="Supplier_Request_Status" EntityType="Self.Supplier_Request_Status" />
+    <EntitySet Name="Supplier_Type" EntityType="Self.Supplier_Type" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Tasks" EntityType="Self.Task" />
+    <EntitySet Name="Task_Status" EntityType="Self.Task_Status" />
+    <EntitySet Name="Tasks_Equipment" EntityType="Self.Tasks_Equipment" />
+    <EntitySet Name="Tenders" EntityType="Self.Tender" />
+    <EntitySet Name="Tender_Request" EntityType="Self.Tender_Request" />
+    <EntitySet Name="Tender_Request_Status" EntityType="Self.Tender_Request_Status" />
+    <EntitySet Name="Tender_Status" EntityType="Self.Tender_Status" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="User_Role" EntityType="Self.User_Role" />
+    <EntitySet Name="WriteOff_Inventory" EntityType="Self.WriteOff_Inventory" />
+    <AssociationSet Name="FK_Inventory_Category" Association="Self.FK_Inventory_Category">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Inventory" EntitySet="Inventories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Checkout_Checkin_Date_Checkout_Checkin" Association="Self.FK_Checkout_Checkin_Date_Checkout_Checkin">
+      <End Role="Checkout_Checkin" EntitySet="Checkout_Checkin" />
+      <End Role="Checkout_Checkin_Date" EntitySet="Checkout_Checkin_Date" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Checkout_Checkin_Date_Tasks_Equipment" Association="Self.FK_Checkout_Checkin_Date_Tasks_Equipment">
+      <End Role="Tasks_Equipment" EntitySet="Tasks_Equipment" />
+      <End Role="Checkout_Checkin_Date" EntitySet="Checkout_Checkin_Date" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tender_Request_Client" Association="Self.FK_Tender_Request_Client">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Tender_Request" EntitySet="Tender_Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Employee_Type" Association="Self.FK_Employee_Employee_Type">
+      <End Role="Employee_Type" EntitySet="Employee_Type" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Task_Employee" Association="Self.FK_Employee_Task_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Employee_Task" EntitySet="Employee_Task" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Supplier_Order_Employee" Association="Self.FK_Supplier_Order_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Supplier_Order" EntitySet="Supplier_Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Employee" Association="Self.FK_User_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Task_Task" Association="Self.FK_Employee_Task_Task">
+      <End Role="Task" EntitySet="Tasks" />
+      <End Role="Employee_Task" EntitySet="Employee_Task" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tasks_Equipment_Equipment" Association="Self.FK_Tasks_Equipment_Equipment">
+      <End Role="Equipment" EntitySet="Equipments" />
+      <End Role="Tasks_Equipment" EntitySet="Tasks_Equipment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inventory_On_Hand_Inventory" Association="Self.FK_Inventory_On_Hand_Inventory">
+      <End Role="Inventory" EntitySet="Inventories" />
+      <End Role="Inventory_On_Hand" EntitySet="Inventory_On_Hand" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orderline_Inventory" Association="Self.FK_Orderline_Inventory">
+      <End Role="Inventory" EntitySet="Inventories" />
+      <End Role="Orderline" EntitySet="Orderlines" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Phase_Inventory_Inventory" Association="Self.FK_Phase_Inventory_Inventory">
+      <End Role="Inventory" EntitySet="Inventories" />
+      <End Role="Phase_Inventory" EntitySet="Phase_Inventory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rental_Line_Inventory" Association="Self.FK_Rental_Line_Inventory">
+      <End Role="Inventory" EntitySet="Inventories" />
+      <End Role="Rental_Line" EntitySet="Rental_Line" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inventory_On_Hand_WriteOff_Inventory" Association="Self.FK_Inventory_On_Hand_WriteOff_Inventory">
+      <End Role="WriteOff_Inventory" EntitySet="WriteOff_Inventory" />
+      <End Role="Inventory_On_Hand" EntitySet="Inventory_On_Hand" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Supplier_Order_Order_Status" Association="Self.FK_Supplier_Order_Order_Status">
+      <End Role="Order_Status" EntitySet="Order_Status" />
+      <End Role="Supplier_Order" EntitySet="Supplier_Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Password_History" Association="Self.FK_User_Password_History">
+      <End Role="Password_History" EntitySet="Password_History" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Supplier_Order_Payment_Type" Association="Self.FK_Supplier_Order_Payment_Type">
+      <End Role="Payment_Type" EntitySet="Payment_Type" />
+      <End Role="Supplier_Order" EntitySet="Supplier_Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Phase_Inventory_Phase" Association="Self.FK_Phase_Inventory_Phase">
+      <End Role="Phase" EntitySet="Phases" />
+      <End Role="Phase_Inventory" EntitySet="Phase_Inventory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Phase_Phase_Status" Association="Self.FK_Phase_Phase_Status">
+      <End Role="Phase_Status" EntitySet="Phase_Status" />
+      <End Role="Phase" EntitySet="Phases" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Phase_Project" Association="Self.FK_Phase_Project">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="Phase" EntitySet="Phases" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Project_Phase" Association="Self.FK_Project_Phase">
+      <End Role="Phase" EntitySet="Phases" />
+      <End Role="Project" EntitySet="Projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subcontractor_Phase_Phase" Association="Self.FK_Subcontractor_Phase_Phase">
+      <End Role="Phase" EntitySet="Phases" />
+      <End Role="Subcontractor_Phase" EntitySet="Subcontractor_Phase" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Task_Phase" Association="Self.FK_Task_Phase">
+      <End Role="Phase" EntitySet="Phases" />
+      <End Role="Task" EntitySet="Tasks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Project_Project_Status" Association="Self.FK_Project_Project_Status">
+      <End Role="Project_Status" EntitySet="Project_Status" />
+      <End Role="Project" EntitySet="Projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Project_Tender" Association="Self.FK_Project_Tender">
+      <End Role="Tender" EntitySet="Tenders" />
+      <End Role="Project" EntitySet="Projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Supplier_Order_Project" Association="Self.FK_Supplier_Order_Project">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="Supplier_Order" EntitySet="Supplier_Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tender_Project" Association="Self.FK_Tender_Project">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="Tender" EntitySet="Tenders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rental_Rental_Status" Association="Self.FK_Rental_Rental_Status">
+      <End Role="Rental_Status" EntitySet="Rental_Status" />
+      <End Role="Rental" EntitySet="Rentals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rental_Supplier" Association="Self.FK_Rental_Supplier">
+      <End Role="Supplier" EntitySet="Suppliers" />
+      <End Role="Rental" EntitySet="Rentals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rental_Request_Rental_Request_Status" Association="Self.FK_Rental_Request_Rental_Request_Status">
+      <End Role="Rental_Request_Status" EntitySet="Rental_Request_Status" />
+      <End Role="Rental_Request" EntitySet="Rental_Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rental_Request_Supplier" Association="Self.FK_Rental_Request_Supplier">
+      <End Role="Supplier" EntitySet="Suppliers" />
+      <End Role="Rental_Request" EntitySet="Rental_Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subcontractor_Phase_Subcontractor" Association="Self.FK_Subcontractor_Phase_Subcontractor">
+      <End Role="Subcontractor" EntitySet="Subcontractors" />
+      <End Role="Subcontractor_Phase" EntitySet="Subcontractor_Phase" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Supplier_Order_Supplier" Association="Self.FK_Supplier_Order_Supplier">
+      <End Role="Supplier" EntitySet="Suppliers" />
+      <End Role="Supplier_Order" EntitySet="Supplier_Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Supplier_Supplier_Request" Association="Self.FK_Supplier_Supplier_Request">
+      <End Role="Supplier_Request" EntitySet="Supplier_Request" />
+      <End Role="Supplier" EntitySet="Suppliers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Supplier_Supplier_Type" Association="Self.FK_Supplier_Supplier_Type">
+      <End Role="Supplier_Type" EntitySet="Supplier_Type" />
+      <End Role="Supplier" EntitySet="Suppliers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Supplier_Order_Supplier_Order" Association="Self.FK_Supplier_Order_Supplier_Order">
+      <End Role="Supplier_Order" EntitySet="Supplier_Order" />
+      <End Role="Supplier_Order1" EntitySet="Supplier_Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Supplier_Request_Supplier_Request_Status" Association="Self.FK_Supplier_Request_Supplier_Request_Status">
+      <End Role="Supplier_Request_Status" EntitySet="Supplier_Request_Status" />
+      <End Role="Supplier_Request" EntitySet="Supplier_Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Task_Task_Status" Association="Self.FK_Task_Task_Status">
+      <End Role="Task_Status" EntitySet="Task_Status" />
+      <End Role="Task" EntitySet="Tasks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tasks_Equipment_Task" Association="Self.FK_Tasks_Equipment_Task">
+      <End Role="Task" EntitySet="Tasks" />
+      <End Role="Tasks_Equipment" EntitySet="Tasks_Equipment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tender_Request_Tender" Association="Self.FK_Tender_Request_Tender">
+      <End Role="Tender" EntitySet="Tenders" />
+      <End Role="Tender_Request" EntitySet="Tender_Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tender_Tender_Status" Association="Self.FK_Tender_Tender_Status">
+      <End Role="Tender_Status" EntitySet="Tender_Status" />
+      <End Role="Tender" EntitySet="Tenders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tender_Request_Tender_Request_Status" Association="Self.FK_Tender_Request_Tender_Request_Status">
+      <End Role="Tender_Request_Status" EntitySet="Tender_Request_Status" />
+      <End Role="Tender_Request" EntitySet="Tender_Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_User_Role" Association="Self.FK_User_User_Role">
+      <End Role="User_Role" EntitySet="User_Role" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
